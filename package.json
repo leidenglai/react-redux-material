@@ -1,0 +1,60 @@
+{
+  "name": "react-ops",
+  "version": "1.0.0",
+  "description": "http://www.hustlzp.com/post/2016/03/react-redux-deployment",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "NODE_ENV=production webpack --progress --config webpack.config.prod.js && fis3 release -d ./output",
+    "deploy": "fab deploy -i ~/.ssh/kp-******"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "leidenglai",
+  "license": "ISC",
+  "devDependencies": {
+    "avoscloud-sdk": "^0.6.9",
+    "babel-core": "^6.4.0",
+    "babel-loader": "^6.2.3",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-object-rest-spread": "^6.5.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-react-hmre": "^1.1.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "express": "^4.13.4",
+    "font-awesome": "^4.5.0",
+    "hint.css": "^2.1.0",
+    "jsx-control-statements": "^3.1.0",
+    "moment": "^2.11.2",
+    "node-sass": "^3.4.2",
+    "normalize.css": "^3.0.3",
+    "redux-devtools": "^3.1.1",
+    "redux-devtools-dock-monitor": "^1.1.0",
+    "redux-devtools-log-monitor": "^1.0.4",
+    "redux-logger": "^2.6.0",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.14",
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-hot-middleware": "^2.8.1",
+    "whatwg-fetch": "^0.11.0"
+  },
+  "dependencies": {
+    "history": "^1.17.0",
+    "immutability-helper": "^2.0.0",
+    "lodash": "^4.5.1",
+    "material-ui": "^0.16.5",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-redux": "^4.0.6",
+    "react-router": "^2.0.0",
+    "react-router-redux": "^4.0.0",
+    "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.0.5",
+    "redux-thunk": "^1.0.3"
+  }
+}

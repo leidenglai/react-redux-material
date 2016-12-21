@@ -1,0 +1,5 @@
+{
+  "src": "output",
+  "dest": "qiniu:access_key=12345&secret_key=上山打老虎",
+  "debug_level": 0
+}
