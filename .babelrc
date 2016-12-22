@@ -1,0 +1,9 @@
+{
+  "presets": ["es2015", "stage-1", "react"],
+  "plugins": ["transform-object-rest-spread", "jsx-control-statements", "transform-decorators-legacy"],
+  "env": {
+    "development": {
+      "presets": ["react-hmre"]
+    }
+  }
+}

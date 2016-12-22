@@ -9,6 +9,7 @@ import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 
 
@@ -19,7 +20,20 @@ class UserListPage extends React.Component {
       channelId: "000",
       startData: "",
       endData: "",
-      appLanguage: "all",
+      appLanguage: "000",
+      countryId: "000",
+      tableHeader: {
+        channelName: '用户来源渠道',
+        activeName: '用户来源活动',
+        signInDate: '注册时间',
+        userID: 'User ID',
+        nickname: 'Nickname',
+        phone: '电话号码（区号）',
+        country: '国家',
+        fullName: '姓名',
+        appLanguage: 'APP语言',
+        email: 'Email',
+      }
     }
   }
 
@@ -32,24 +46,19 @@ class UserListPage extends React.Component {
   getTableNodes = content => {
     return (
       <Table>
-        <TableHeader>
+        <TableHeader
+          displaySelectAll = { false }
+          adjustForCheckbox = { false } >
           <TableRow>
-            {content[0].map((user, key) => {
+            {_.map(this.state.tableHeader, (item, key) => {
               return (
-                <TableHeaderColumn>{key}</TableHeaderColumn>
+                <TableHeaderColumn key={key}>{item}</TableHeaderColumn>
               )
             })}
           </TableRow>
         </TableHeader>
         <TableBody>
-          {content.map(user => {
-            let userNodes = user.map(item => {
-              return (<TableRowColumn>{item}</TableRowColumn>)
-            })
-            return (
-              <TableRow>{userNodes}</TableRow>
-            )
-          })}
+          
         </TableBody>
       </Table>
     )
@@ -64,8 +73,9 @@ class UserListPage extends React.Component {
 
   handleChannelChange = (event, index, value) => this.setState({ channelId: value });
 
+  handleLanguageChange = (event, index, value) => this.setState({ appLanguage: value });
 
-  handleLanguageChange = (event, index, value) => this.setState({ channelId: value });
+  handleCountryChange = (event, index, value) => this.setState({ countryId: value });
 
   //开始时间
   selectStartData = (event, date) => this.setState({ startData: ((new Date(date)).getTime() / 1000) });
@@ -82,8 +92,9 @@ class UserListPage extends React.Component {
         margin: 20,
         minHeight: 600
       },
-      customWidth: {
+      seletedWidth: {
         width: 150,
+        marginLeft: 20
       },
       textField: {
         marginLeft: 20,
@@ -93,6 +104,9 @@ class UserListPage extends React.Component {
         color: "rgba(0, 0, 0, 0.3)",
         paddingTop: 24
       },
+      datePicker: {
+        width: 150
+      },
       libleTitle: {
         position: "absolute",
         top: 18,
@@ -100,8 +114,7 @@ class UserListPage extends React.Component {
     }
 
     const table = (<Paper className="container-fluid" zDepth={1} style={styles.paper}>
-      <div className="row">
-
+      <div className="row filtersContent">
         <TextField
           hintText="用户ID"
           floatingLabelText="User Id"
@@ -128,24 +141,39 @@ class UserListPage extends React.Component {
           value={this.state.appLanguage}
           onChange={this.handleLanguageChange}
           className="col-xs-2"
-          style={styles.customWidth}
+          style={styles.seletedWidth}
         >
-          <MenuItem value={"all"} primaryText="All" />
-          <MenuItem value={"zh_CN"} primaryText="zh_CN" />
-          <MenuItem value={"en_US"} primaryText="en_US" />
-          <MenuItem value={"es_ES"} primaryText="es_ES" />
-          <MenuItem value={"tr_TR"} primaryText="tr_TR" />
-          <MenuItem value={"ru_RU"} primaryText="ru_RU" />
+          <MenuItem value={"000"} primaryText="All" />
+          <MenuItem value={"zh_CN"} primaryText="中文" />
+          <MenuItem value={"en_US"} primaryText="英语" />
+          <MenuItem value={"es_ES"} primaryText="西语" />
+          <MenuItem value={"tr_TR"} primaryText="土语" />
+          <MenuItem value={"ru_RU"} primaryText="俄语" />
         </SelectField>
+
         <SelectField
           floatingLabelText="渠道来源"
           value={this.state.channelId}
           onChange={this.handleChannelChange}
           className="col-xs-2"
-          style={styles.customWidth}
+          style={styles.seletedWidth}
         >
           <MenuItem value={"000"} primaryText="All" />
           <MenuItem value={"001"} primaryText="Custom width" />
+          <MenuItem value={"002"} primaryText="Weeknights" />
+          <MenuItem value={"003"} primaryText="Weekends" />
+          <MenuItem value={"004"} primaryText="Weekly" />
+        </SelectField>
+
+        <SelectField
+          floatingLabelText="国家"
+          value={this.state.countryId}
+          onChange={this.handleCountryChange}
+          className="col-xs-2"
+          style={styles.seletedWidth}
+        >
+          <MenuItem value={"000"} primaryText="All" />
+          <MenuItem value={"001"} primaryText="us" />
           <MenuItem value={"002"} primaryText="Weeknights" />
           <MenuItem value={"003"} primaryText="Weekends" />
           <MenuItem value={"004"} primaryText="Weekly" />
@@ -163,12 +191,16 @@ class UserListPage extends React.Component {
           <label className="col-xs-12" style={styles.libleTitle}>注册时间区间</label>
           <DatePicker 
             className="col-xs-6"
+            style={styles.datePicker}
+            textFieldStyle={styles.datePicker}
             hintText="开始时间"
             container="inline"
             autoOk={true}
             onChange={this.selectStartData} />
             <DatePicker 
-            className="col-xs-5"
+            className="col-xs-6"
+            style={styles.datePicker}
+            textFieldStyle={styles.datePicker}
             hintText="结束时间"
             container="inline"
             autoOk={true}
@@ -176,7 +208,13 @@ class UserListPage extends React.Component {
             shouldDisableDate={this.disableRandomDates} />
         </div>
       </div>
-      {content.length > 0 ? this.getTableNodes(content) : ''}
+      <div className="row">
+        <Divider />
+      </div>
+      <div className="row tableContent">
+        {this.getTableNodes(content)}
+      </div>
+
     </Paper>)
       // const table =
       //   (<Table>
