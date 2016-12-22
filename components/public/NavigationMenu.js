@@ -6,7 +6,7 @@ import AppBar from 'material-ui/AppBar';
 import Subheader from 'material-ui/Subheader';
 import Drawer from 'material-ui/Drawer';
 import Paper from 'material-ui/Paper';
-import Divider from 'material-ui/divider'
+import Divider from 'material-ui/Divider'
 
 const SelectableList = makeSelectable(List);
 
