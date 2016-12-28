@@ -25,7 +25,7 @@ module.exports = {
       { test: /\.less$/, loader: 'style!css!less' },
       {
         test: /\.(png|jpg)$/,
-        loaders: ['file?name=[name].[ext]', 'image-webpack?{progressive:true, optimizationLevel: 1, interlaced: false, pngquant:{quality: "65-90", speed: 4}}']
+        loaders: ['file?name=[name]-[hash].[ext]', 'image-webpack?{progressive:true, optimizationLevel: 1, interlaced: false, pngquant:{quality: "65-90", speed: 4}}']
       }
     ]
   },

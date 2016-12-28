@@ -10,5 +10,5 @@ fis.match('*.css', {
 
 fis.match('*.{js,css}', {
   useHash: true,
-  domain: 'http://static.socialshops.com/ops',
+  domain: 'http://localhost' //静态文件cdn根目录
 });
