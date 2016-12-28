@@ -5,7 +5,7 @@ import { createReducer } from '../utils'
 export default createReducer({
   userList: [],
   pageNum: 1,
-  pageSize: 40,
+  pageSize: 20,
   totalCount: 0
 }, {
   // 获取页面数据
@@ -17,5 +17,5 @@ export default createReducer({
   },
   [actionType.FETCH_USERLIST_DATA_ERROR](state, action) {
     return state
-  },
+  }
 })

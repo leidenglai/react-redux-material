@@ -11,8 +11,6 @@ import store from './store' //redux的store配置
 import Root from './containers/Root'
 import { loggedIn } from './actions/account'
 
-import { initLeanCloud } from './utils'
-
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 // Needed for onTouchTap
