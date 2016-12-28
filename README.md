@@ -1,8 +1,10 @@
 #Socialshops 后台运营管理系统
-##Development
 
 react+redux+material-ui+webpack
 -------------------------------
+
+##Development
+
 
 ```sh
 npm install

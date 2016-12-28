@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "build": "NODE_ENV=production webpack --progress --config webpack.config.prod.js && fis3 release -d ./output",
+    "build": "cross-env NODE_ENV=production webpack --progress --config webpack.config.prod.js && fis3 release -d ./output",
     "deploy": "fab deploy -i ~/.ssh/github_rsa"
   },
   "repository": {
@@ -23,6 +23,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.0",
     "babel-preset-stage-1": "^6.5.0",
+    "cross-env": "^3.1.3",
     "css-loader": "^0.23.1",
     "express": "^4.13.4",
     "hint.css": "^2.1.0",

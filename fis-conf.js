@@ -8,11 +8,7 @@ fis.match('*.css', {
   optimizer: fis.plugin('clean-css')
 });
 
-fis.match('*.png', {
-  optimizer: fis.plugin('png-compressor')
-});
-
-fis.match('*.{js,css,png}', {
+fis.match('*.{js,css}', {
   useHash: true,
   domain: 'http://static.socialshops.com/ops',
 });
