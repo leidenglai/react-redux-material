@@ -1,7 +1,4 @@
-#React Redux Example
-
-**Attention**: this repo is just for learning, it cannot run really.
-
+#Socialshops 后台运营管理系统
 ##Development
 
 ```sh
@@ -9,8 +6,8 @@ npm install
 npm start
 ```
 
-##Deploy
+##Build
 
 ```sh
-npm run deploy
+npm run build
 ```

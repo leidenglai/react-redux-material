@@ -1,0 +1,59 @@
+//common
+.color-blue {
+  color: rgb(62, 163, 230);
+}
+.no-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.AuthPage-logo {
+  background-image: url(../images/logo.png);
+  background-size: 100% 100%;
+}
+// 分页
+.pagination {
+  display: flex;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+  justify-content: center;
+
+  li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    list-style-type: none;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.078);
+    }
+    &.active {
+      a {
+        z-index: 3;
+        color: #fff;
+        cursor: default;
+        background-color: rgb(0, 188, 212);
+        border-color: rgb(0, 188, 212);
+      }
+    }
+    a {
+      position: relative;
+      display: block;
+      margin-left: -1px;
+      color: rgba(0, 0, 0, 0.870588);
+      text-decoration: none;
+      border: 1px solid #ddd;
+      padding: 5px 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      background-color: #fff;
+      cursor: pointer;
+      min-width: 20px;
+    }
+  }
+}

@@ -21,18 +21,13 @@ class App extends Component {
     }
   }
 
-  // componentDidMount() {}
-
-  // prevProps, prevState
   componentWillReceiveProps() {
     const { message } = this.props;
 
-    console.log(message)
     this.setState({
       snackbarOpen: !!message.type,
       message: message.content
     });
-    console.log(this.state)
   }
 
   snackbarHandleRequestClose = () => {
@@ -46,21 +41,23 @@ class App extends Component {
     });
   }
 
+
   render() {
     const { loading, message } = this.props;
 
     let styles = {
       opsContainer: {
+        position: "relative",
         paddingTop: 50,
-        paddingLeft: 200,
+        marginLeft: 200,
         minHeight: 400
       },
       linearProgress: {
         display: loading.status ? "block" : "none",
         position: "fixed",
-        top: 0,
-        left: 0,
-        zIndex: 1400
+        top: 50,
+        left: 200,
+        zIndex: 1200
       }
     }
 
@@ -70,8 +67,9 @@ class App extends Component {
           categories={moduleData} />
         <div id="opsContainer" style={styles.opsContainer}>
           <LinearProgress mode="indeterminate" style={styles.linearProgress}/>
-          <AppHeader admin={false} title="socialshops"/>
-            {this.props.children}
+          <AppHeader admin={false} title=""/>
+          
+          {this.props.children}
 
           <Snackbar
             open={ this.state.snackbarOpen}

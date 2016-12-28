@@ -2,12 +2,12 @@ import React from 'react'
 import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as auth from '../auth'
 import { logIn } from '../actions/account'
 
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import LinearProgress from 'material-ui/LinearProgress';
+import Paper from 'material-ui/Paper';
 
 class AuthPage extends React.Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class AuthPage extends React.Component {
     e.preventDefault()
 
     if (this.state.username === "" || this.state.password === "") {
-      window.alert('不能为空')
+      window.alert('账号或密码不能为空')
       return;
     }
 
@@ -57,30 +57,35 @@ class AuthPage extends React.Component {
       <div className="container" style={{marginTop: "10%", marginBottom: "10%"}}>
         <LinearProgress mode="indeterminate" style={{display: loading.status? "block": "none", position:"fixed", top:0, left:0}}/>
         
-        <h1 className="row text-center" style={{fontSize: "48px", color:"#3ea3e6"}}>Socialshops OPS</h1>
-        <div className="row">
-          <form className="col-xs-6 col-xs-offset-3 text-center" onSubmit={this.handleSubmit}>
-            <TextField ref="username" id="username" name="username" value={this.state.username} onChange={this.handleUsernameChange}
-              hintText="The default is admin"
-              floatingLabelText="Username"
-              fullWidth={true}
-            />
-            <br/>
-            <TextField type="password" ref="password" id="password" name="password" value={this.state.password} onChange={this.handlePasswordChange}
-              hintText="The default is admin"
-              floatingLabelText="Password" 
-              fullWidth={true}
-            />
-            <br/>
-            <RaisedButton
-              type="submit"
-              label="Sign in"
-              primary={true}
-              fullWidth={true}
-              style={{marginTop: "40px",height:"48px",lineHeight: "48px"}}
-            />
-          </form>
-        </div>
+        <Paper zDepth={2} style={{padding: "20px 0 40px", width: 300, margin:"0 auto", backgroundColor: "#fff"}}>
+          <div className="row text-center">
+            <div className="AuthPage-logo" style={{width: 100, height:100, display: "inline-block"}}></div>
+            <div className="color-blue" style={{marginTop: 14, fontSize: 16}}>Socialshops 运营后台管理系统</div>
+          </div>
+          <div className="row">
+            <form className="col-xs-10 col-xs-offset-1 text-center" onSubmit={this.handleSubmit}>
+              <TextField ref="username" id="username" name="username" value={this.state.username} onChange={this.handleUsernameChange}
+                hintText="The default is admin"
+                floatingLabelText="Username"
+                fullWidth={true}
+              />
+              <br/>
+              <TextField type="password" ref="password" id="password" name="password" value={this.state.password} onChange={this.handlePasswordChange}
+                hintText="The default is admin"
+                floatingLabelText="Password" 
+                fullWidth={true}
+              />
+              <br/>
+              <RaisedButton
+                type="submit"
+                label="Sign in"
+                primary={true}
+                fullWidth={true}
+                style={{marginTop: 40, height:48, lineHeight: "48px"}}
+              />
+            </form>
+          </div>
+        </Paper>
       </div>
     )
   }

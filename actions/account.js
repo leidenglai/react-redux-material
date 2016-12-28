@@ -1,6 +1,5 @@
 import { push } from 'react-router-redux'
-import * as auth from '../auth'
-
+import { packOptionsToFetch, responseHandler } from '../utils';
 /**
  * 登录
  */
@@ -37,57 +36,48 @@ export function saveUserData(userData) {
   }
 }
 
-export function logIn(userData) {
-  return dispatch => {
-    dispatch(logInStart())
-
-    auth.logIn(userData).then(function(data) {
-      dispatch(logInSuccess())
-
-      //token保存在本地
-      auth.setLocalStoragePermissions(data.token)
-
-      //保存user数据
-      const userData = {
-        account: {
-          isLogin: true,
-          ...data.userInfo
-        },
-        token: data.token
-      }
-      localStorage.setItem('token', data.token);
-
-      dispatch(saveUserData(userData))
-      dispatch(push('/'))
-    }, function(error) {
-      window.alert(error);
-      dispatch(logInError(error))
-    })
-  }
-}
 
 /**
  * 登出
  */
-
 export const LOG_OUT = "LOG_OUT"
-
 export function logOut() {
   return dispatch => {
-    auth.logOut()
+    localStorage.removeItem('token')
     dispatch(push('/login'))
     dispatch({
       type: LOG_OUT
-    })
+    });
   }
 }
 
-/**
- * 初始化登陆状态
- */
+export function logIn(userData) {
+  return dispatch => {
+    dispatch(logInStart())
 
-//export const INIT_AUTH_STATE = "INIT_AUTH_STATE"
-//
-//export function initAuthState() {
-//    return {type: INIT_AUTH_STATE, authed: auth.loggedIn()}
-//}
+    packOptionsToFetch('/user/login', userData)
+      .then(responseHandler(dispatch))
+      .then(function(data) {
+          dispatch(logInSuccess())
+
+          //保存user数据
+          const userData = {
+            account: {
+              isLogin: true,
+              ...data.userInfo
+            },
+            token: data.token
+          }
+          localStorage.setItem('token', data.token);
+
+          dispatch(saveUserData(userData))
+          dispatch(push('/'))
+        },
+        function(errorMsg) {
+          dispatch(logInError(errorMsg))
+        });
+  }
+}
+export function loggedIn() {
+  return !!localStorage.getItem('token');
+}

@@ -1,12 +1,22 @@
+import { packOptionsToFetch, responseHandler } from '../utils';
+
 // loading动画
 export const SHOW_LOADING = "SHOW_LOADING"
 export const HIDE_LOADING = "HIDE_LOADING"
-  //全局数据
+
+//全局数据
 export const GLOBAL_GET = "GLOBAL_GET"
 export const GLOBAL_SET = "GLOBAL_SET"
-  //消息提示
+
+//消息提示
 export const SNACKBAR_MESSAGE_SHOW = "SNACKBAR_MESSAGE_SHOW"
 export const SNACKBAR_MESSAGE_HIDE = "SNACKBAR_MESSAGE_HIDE"
+
+// 国家列表
+export const FETCH_COUNTRYLIST_DATA = "FETCH_COUNTRYLIST_DATA"
+
+//下拉框列表
+export const FETCH_SELECOPTIONTLIST_DATA = "FETCH_SELECOPTIONTLIST_DATA"
 
 export function nprogressStart() {
   return {
@@ -49,40 +59,25 @@ function setGlobal(params) {
   }
 }
 
-
-export function getGlobalProps() {
-  let promise = new Promise(function(resolve, reject) {
-
-    try {
-      const timeRange = localStorage.getItem('timeRange') || 168;
-      const business = localStorage.getItem('business') || 'all';
-      const platform = localStorage.getItem('platform') || 'PC';
-      resolve({ timeRange, business, platform })
-    } catch (err) {
-      reject(err);
-    }
-
-  });
+export function fetchCountryListData() {
   return dispatch => {
-    return promise.then(params => dispatch(getGlobal(params)))
-  };
+    packOptionsToFetch('/user/getAllAddressCountry', {}, 'APP')
+      .then(responseHandler(dispatch))
+      .then(data => dispatch({
+        type: FETCH_COUNTRYLIST_DATA,
+        data
+      }));
+  }
 }
 
-export function setGlobalProps(key, value) {
-  let param = {};
-  let promise = new Promise(function(resolve, reject) {
-
-    try {
-      localStorage.setItem(key, value);
-      param[key] = value;
-      resolve(param);
-    } catch (err) {
-      reject(err);
-    }
-
-  });
-
+//请求下拉框的列表
+export function fetchSelectOptionListData(params) {
   return dispatch => {
-    return promise.then(params => dispatch(setGlobal(params)))
-  };
+    packOptionsToFetch('/info/getSelectOptions', params)
+      .then(responseHandler(dispatch))
+      .then(data => dispatch({
+        type: FETCH_SELECOPTIONTLIST_DATA,
+        data: data
+      }));
+  }
 }

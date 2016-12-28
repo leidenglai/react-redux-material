@@ -3,26 +3,18 @@ import * as actionType from '../actions/global'
 import { createReducer } from '../utils'
 
 export default createReducer({
-  timeRange: 1,
-  business: 'all',
-  platform: 'pc',
   loading: {
     status: false
   },
   message: {
     type: '',
     content: ''
-  }
+  },
+  countryList: [],
+  dlChannel: [],
+  dlAgency: [],
+  registerFrom: []
 }, {
-
-  // 用户数据
-  [actionType.GLOBAL_GET](state, action) {
-    return update(state, { $merge: {...action } })
-  },
-  [actionType.GLOBAL_SET](state, action) {
-    return update(state, { $merge: {...action } })
-  },
-
   //loading动画
   [actionType.SHOW_LOADING](state) {
     return update(state, { loading: { status: { $set: true } } })
@@ -37,5 +29,14 @@ export default createReducer({
   },
   [actionType.SNACKBAR_MESSAGE_HIDE](state) {
     return update(state, { message: { $set: { content: '', type: '' } } })
+  },
+
+  //国家列表
+  [actionType.FETCH_COUNTRYLIST_DATA](state, action) {
+    return update(state, { countryList: { $set: action.data } })
+  },
+  //下拉选项列表
+  [actionType.FETCH_SELECOPTIONTLIST_DATA](state, action) {
+    return update(state, { $merge: {...(action.data) } })
   }
 })

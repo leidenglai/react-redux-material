@@ -1,39 +1,47 @@
 exports.moduleData = [
   {
-    title: "用户列表",
-    value: "userList",
-    router: "/userList",
+    title: "用户管理",
     navShow: true,
-    permissions: 1,
-
+    icon: "fa fa-users",
+    nestedItems: [
+      {
+        title: "用户列表",
+        value: "/userList",
+        router: "/userList",
+        icon: "fa fa-list",
+      },
+      {
+        title: "用户详情",
+        value: "/userDetail",
+        router: "/userDetail",
+        icon: "fa fa-user",
+      }
+    ]
   },
   {
-    title: "用户详情",
-    value: "userDetail",
-    router: "/userDetail",
-    navShow: false,
-    permissions: 1,
-
-  },
-  {
-    title: "订单列表",
-    value: "orderList",
-    router: "/orderList",
+    title: "订单管理",
     navShow: true,
-    permissions: 1
+    icon: "fa fa-line-chart",
+    nestedItems: [
+      {
+        title: "订单列表",
+        value: "/orderList",
+        router: "/orderList",
+        icon: "fa fa-list-alt",
+      },
+      {
+        title: "订单详情",
+        value: "/orderDetail",
+        router: "/orderDetail",
+        icon: "fa fa-balance-scale"
+      }
+    ]
   },
   {
-    title: "订单详情",
-    value: "orderDetail",
-    router: "/orderDetail",
-    navShow: false,
-    permissions: 1
-  },
-  {
-    title: "群发消息",
-    value: "messagePost",
-    router: "/message/post",
+    title: "消息",
+    value: "/message",
+    router: "/message",
     navShow: true,
-    permissions: 1
+    icon: "fa fa-comments-o"
   },
 ]

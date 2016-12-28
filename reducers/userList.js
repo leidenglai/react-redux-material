@@ -3,7 +3,7 @@ import * as actionType from '../actions/userList'
 import { createReducer } from '../utils'
 
 export default createReducer({
-  content: [],
+  userList: [],
   pageNum: 1,
   pageSize: 40,
   totalCount: 0
@@ -13,7 +13,7 @@ export default createReducer({
     return state
   },
   [actionType.FETCH_USERLIST_DATA_SUCCESS](state, action) {
-    return Object.assign({}, state, action.userList);
+    return Object.assign({}, state, action.data);
   },
   [actionType.FETCH_USERLIST_DATA_ERROR](state, action) {
     return state
