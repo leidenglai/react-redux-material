@@ -8,6 +8,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import LinearProgress from 'material-ui/LinearProgress';
 import Paper from 'material-ui/Paper';
+import { pink500 } from 'material-ui/styles/colors';
 
 class AuthPage extends React.Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class AuthPage extends React.Component {
     const { loading } = this.props
     return (
       <div className="container" style={{marginTop: "10%", marginBottom: "10%"}}>
-        <LinearProgress mode="indeterminate" style={{display: loading.status? "block": "none", position:"fixed", top:0, left:0}}/>
+        <LinearProgress mode="indeterminate" color={pink500} style={{display: loading.status? "block": "none", position:"fixed", top:0, left:0}}/>
         
         <Paper zDepth={2} style={{padding: "20px 0 40px", width: 300, margin:"0 auto", backgroundColor: "#fff"}}>
           <div className="row text-center">

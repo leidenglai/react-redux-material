@@ -16,7 +16,7 @@ export default class UserDetailCard extends Component {
     this.state = {
       userKeyValue: {
         nickName: "昵称",
-        username: "真实姓名",
+        userName: "真实姓名",
         registTime: "注册时间",
         phoneNum: "电话号码（区号）",
         country: "国家",

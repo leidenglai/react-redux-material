@@ -3,6 +3,10 @@ import * as actionType from '../actions/global'
 import { createReducer } from '../utils'
 
 export default createReducer({
+  systemStatus: {
+    currentModule: "userList",
+    menuShowType: true
+  },
   loading: {
     status: false
   },
@@ -38,5 +42,8 @@ export default createReducer({
   //下拉选项列表
   [actionType.FETCH_SELECOPTIONTLIST_DATA](state, action) {
     return update(state, { $merge: {...(action.data) } })
-  }
+  },
+  [actionType.SET_MENU_DEFAULT_VALUE](state, action) {
+    return update(state, { systemStatus: { currentModule: { $set: action.moduleName } } })
+  },
 })

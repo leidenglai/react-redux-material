@@ -91,12 +91,6 @@ class UserListPage extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-
-    // 请求国家列表
-    dispatch(global.fetchCountryListData());
-
-    //请求下拉框的列表
-    dispatch(global.fetchSelectOptionListData({ type: "dlChannel,dlAgency,registerFrom" }));
   }
 
   getTableNodes = content => {

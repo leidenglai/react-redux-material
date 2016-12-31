@@ -1,4 +1,5 @@
 import { packOptionsToFetch, responseHandler } from '../utils';
+import { browserHistory } from 'react-router'
 
 // loading动画
 export const SHOW_LOADING = "SHOW_LOADING"
@@ -17,6 +18,9 @@ export const FETCH_COUNTRYLIST_DATA = "FETCH_COUNTRYLIST_DATA"
 
 //下拉框列表
 export const FETCH_SELECOPTIONTLIST_DATA = "FETCH_SELECOPTIONTLIST_DATA"
+
+//改变menu选中
+export const SET_MENU_DEFAULT_VALUE = "SET_MENU_DEFAULT_VALUE"
 
 export function nprogressStart() {
   return {
@@ -44,21 +48,6 @@ export function clearMessageSnackbar() {
   }
 }
 
-
-function getGlobal(params) {
-  return {
-    type: GLOBAL_GET,
-    global: params
-  };
-}
-
-function setGlobal(params) {
-  return {
-    type: GLOBAL_SET,
-    global: params
-  }
-}
-
 export function fetchCountryListData() {
   return dispatch => {
     packOptionsToFetch('/user/getAllAddressCountry', {}, 'APP')
@@ -79,5 +68,26 @@ export function fetchSelectOptionListData(params) {
         type: FETCH_SELECOPTIONTLIST_DATA,
         data: data
       }));
+  }
+}
+
+
+//改变menu选中
+export function setMneuDefaultValue(name) {
+  return {
+    type: SET_MENU_DEFAULT_VALUE,
+    moduleName: name
+  }
+}
+//页面跳转
+export function changeModule(params) {
+  return dispatch => {
+    const _paramArr = params.split('/');
+    const pathName = _paramArr[_paramArr.length - 1].split('?')[0];
+    // 跳转
+    browserHistory.push(params);
+    // 改变menu选择栏目
+    dispatch(setMneuDefaultValue(pathName));
+
   }
 }

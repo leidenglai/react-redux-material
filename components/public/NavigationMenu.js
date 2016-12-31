@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { browserHistory } from 'react-router';
 
 import { List, ListItem, makeSelectable } from 'material-ui/List';
 import FontIcon from 'material-ui/FontIcon';
@@ -40,37 +39,24 @@ function wrapState(ComposedComponent) {
         </ComposedComponent>
       );
     }
-  };
+  }
 }
 
-SelectableList = wrapState(SelectableList);
+// SelectableList = wrapState(SelectableList);
 
 export default class NavigationMenu extends Component {
   static propTypes = {
-    categories: PropTypes.array
+    categories: PropTypes.array.isRequired,
+    defaultValue: PropTypes.string.isRequired,
+    onItemClick: PropTypes.func.isRequired
   };
 
   constructor(props) {
     super(props);
-    this.state = {
-      selectedIndex: window.location.pathname,
-    }
-  }
-
-  componentWillReceiveProps() {
-    this.setState({ selectedIndex: window.location.pathname })
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextState.selectedIndex === this.state.selectedIndex ? false : true;
-  }
-
-  handleListChange = (event, index, value) => this.setState({ selectedIndex: value });
-
-  handleModuleJump = (router, value, event) => {
-    if (value !== this.state.selectedIndex) {
-      browserHistory.push(router);
-    }
+    return nextProps.defaultValue === this.props.defaultValue ? false : true;
   }
 
   render() {
@@ -88,8 +74,7 @@ export default class NavigationMenu extends Component {
 	        titleStyle={{lineHeight:"50px"}}
 	        showMenuIconButton = {false}
 				/>
-				<SelectableList
-					defaultValue={this.state.selectedIndex}>
+				<SelectableList value={this.props.defaultValue}>
 					<Subheader>菜单</Subheader>
 					{this.props.categories.map((item, key) => {
 						return (
@@ -100,10 +85,11 @@ export default class NavigationMenu extends Component {
 						      className={item.icon}
 						      style={{fontSize: 22, textAlign:"center", lineHeight: "24px"}}
 						    />}
+                disabled={true}
                 initiallyOpen={true}
                 nestedItems={_.map(item.nestedItems, (nestedItem, nestedKey)=> (<ListItem 
                   key={nestedKey}
-                  onTouchTap={this.handleModuleJump.bind(this, nestedItem.router, nestedItem.value)}
+                  onTouchTap={this.props.onItemClick.bind(this, nestedItem.router, nestedItem.value)}
                   value = { nestedItem.value }
                   leftIcon={<FontIcon
                     className={nestedItem.icon}

@@ -21,7 +21,11 @@ export default function loadingBarMiddleware(config = {}) {
         type: REJECTED,
         content: action.error.toString()
       }
-      alert(action.error);
+      if (action.error.indexOf('fetch') !== -1) {
+        console.log(action.error);
+      } else {
+        alert(action.error);
+      }
       // dispatch(messageSnackbar(message));
     }
   }

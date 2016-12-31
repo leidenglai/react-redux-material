@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
-import { global } from '../actions'
-import { moduleData } from '../constants/moduleData'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { global } from '../actions';
+import { moduleData } from '../constants/moduleData';
 
 import LinearProgress from 'material-ui/LinearProgress';
-import NavigationMenu from '../components/public/NavigationMenu'
-import AppHeader from '../components/public/AppHeader'
+import NavigationMenu from '../components/public/NavigationMenu';
+import AppHeader from '../components/public/AppHeader';
 import Snackbar from 'material-ui/Snackbar';
+import { pink500 } from 'material-ui/styles/colors';
 
 class App extends Component {
 
@@ -18,6 +18,15 @@ class App extends Component {
       snackbarAutoHideDuration: 2000,
       message: '',
       snackbarOpen: false,
+    };
+
+  }
+  componentWillMount() {
+    const { location, systemStatus, dispatch } = this.props;
+
+    if (location.pathname.indexOf(systemStatus.currentModule) === -1) {
+      let _pathArr = location.pathname.split('/');
+      dispatch(global.setMneuDefaultValue(_pathArr[_pathArr.length - 1]));
     }
   }
 
@@ -41,9 +50,15 @@ class App extends Component {
     });
   }
 
+  handleModuleClick = (router, value, event) => {
+    const { dispatch } = this.props;
+    if (value !== this.props.selectedIndex) {
+      dispatch(global.changeModule(router));
+    }
+  }
 
   render() {
-    const { loading, message } = this.props;
+    const { loading, message, systemStatus } = this.props;
 
     let styles = {
       opsContainer: {
@@ -64,13 +79,11 @@ class App extends Component {
     return (
       <div className="row">
         <NavigationMenu
-          categories={moduleData} />
+          categories={moduleData} defaultValue={systemStatus.currentModule} onItemClick={this.handleModuleClick} />
         <div id="opsContainer" style={styles.opsContainer}>
-          <LinearProgress mode="indeterminate" style={styles.linearProgress}/>
-          <AppHeader admin={false} title=""/>
-          
+          <LinearProgress mode="indeterminate" color={pink500} style={styles.linearProgress}/>
+          <AppHeader admin={false} title=""/>          
           {this.props.children}
-
           <Snackbar
             open={ this.state.snackbarOpen}
             message={this.state.message}
@@ -83,23 +96,23 @@ class App extends Component {
   }
 }
 App.defaultProps = {
-  userinfo: {
-    isLogin: false
-  },
+  countryList: [],
   loading: {
     status: false
   },
   message: {
     type: '',
     content: ''
+  },
+  systemStatus: {
+    currentModule: ""
   }
 };
 
 function mapStateToProps(state) {
-  const { userinfo } = state;
-  const { loading, message } = state.global;
+  const { loading, message, systemStatus, countryList } = state.global;
 
-  return { userinfo, loading, message };
+  return { loading, message, systemStatus, countryList };
 }
 
 export default connect(mapStateToProps)(App)

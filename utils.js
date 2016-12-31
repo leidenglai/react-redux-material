@@ -30,6 +30,8 @@ export function packOptionsToFetch(api, params, type = 'OPS') {
       data = _.map(Object.assign({}, params || {}, globalParams), (value, key) => {
         if (typeof value === 'object') {
           value = JSON.stringify(value);
+        } else if (typeof value === 'string') {
+          value = (value.trim());
         }
 
         return key + '=' + value;
