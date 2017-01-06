@@ -35,8 +35,8 @@ Response  Body:
 
 redux store数据结构
 用户列表
-usersListData:{
-	"userId": {	//userId存为键名，便于查找
+usersListData:[
+	{
 		"userId": "userId",
 		"userName": "xxxx",
 		"avatar": "http://xxx.png",
@@ -56,7 +56,7 @@ usersListData:{
 		...Other user information
 	},
 	//...
-}
+]
 
 消息列表
 messagesListData: [

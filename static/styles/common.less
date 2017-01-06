@@ -60,15 +60,16 @@
 //聊天
 #Message {
   padding: 30px 30px 20px;
-  border-bottom: 2px solid white;
   overflow-y: scroll;
   height: 575px;
   font-size: 14px;
   min-width: 400px;
 
-  ul {
-    list-style: none;
-    padding-left: 0;
+  .scroll {
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
   }
   .msg-title {
     margin-bottom: 15px;
@@ -90,10 +91,13 @@
     font-size: 16px;
     border-radius: 7px;
     margin-bottom: 30px;
-    width: 90%;
     max-width: 700px;
+    min-width: 100px;
     position: relative;
 
+    p {
+      margin-bottom: 0;
+    }
     &:after {
       bottom: 100%;
       border: solid transparent;
@@ -118,20 +122,41 @@
         background: #94C2ED;
 
         &:after {
-          right: 7%;
+          right: 20px;
           border-bottom-color: #94C2ED;
         }
       }
     }
     &.mag-left {
+      justify-content: flex-start;
+      align-items: flex-start;
+
       .msg-content {
         background: #87bb71;
 
         &:after {
-          left: 7%;
+          left: 20px;
           border-bottom-color: #87bb71;
         }
       }
+    }
+  }
+}
+// 聊天发送消息
+#sendBox {
+  .msg-send-form {
+    display: -webkit-flex;
+    display: flex;
+    height: 96px;
+
+    .msg-send-input {
+      -webkit-flex: 1;
+      flex: 1;
+    }
+    .msg-send-btn {
+      width: 96px;
+      text-align: center;
+      line-height: 96px;
     }
   }
 }

@@ -22,6 +22,7 @@ import commonCss from './static/styles/common.less';
 import bootstrapCss from './static/styles/bootstrap.css';
 import normalizeCss from 'normalize.css';
 const muiTheme = getMuiTheme({
+  fontFamily: '"Hiragino Sans GB", "华文细黑", "STHeiti", "微软雅黑", "Microsoft YaHei", SimHei, "Helvetica Neue", Helvetica, Arial, sans-serif',
   appBar: {
     height: 50,
   },
