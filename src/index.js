@@ -2,6 +2,9 @@ import React from 'react'
 
 import ReactDOM from 'react-dom' //dom插件
 
+// https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API
+import 'whatwg-fetch' //fetch api
+
 import { browserHistory } from 'react-router' //路由插件
 
 import { syncHistoryWithStore } from 'react-router-redux' //路由结合redux的插件

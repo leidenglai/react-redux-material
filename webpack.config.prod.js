@@ -5,7 +5,7 @@ var cdn = "http://static.socialshops.com/ops";
 module.exports = {
   devtool: 'source-map',
   entry: [
-        './index.js'
+        './src/index.js'
     ],
   output: {
     path: path.join(__dirname, 'webpack-output'),
