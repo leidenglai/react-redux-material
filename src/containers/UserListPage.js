@@ -3,8 +3,8 @@ import { browserHistory } from 'react-router'
 import _ from 'lodash';
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import { global } from '../actions'
-import { fetchUserListData, proloadedUserDetailData, exportUserList } from '../actions/userList'
+import { global } from 'actions'
+import { fetchUserListData, proloadedUserDetailData, exportUserList } from 'actions/userList'
 
 import Paper from 'material-ui/Paper';
 import SelectField from 'material-ui/SelectField';

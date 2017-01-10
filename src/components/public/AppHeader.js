@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { logOut } from '../../actions/account'
+import { logOut } from 'actions/account'
 
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
@@ -8,7 +8,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FontIcon from 'material-ui/FontIcon';
 
- class AppHeader extends React.Component {
+class AppHeader extends React.Component {
   static propTypes = {
     title: React.PropTypes.string.isRequired
   };

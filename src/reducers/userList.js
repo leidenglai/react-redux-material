@@ -1,5 +1,5 @@
 import update from 'immutability-helper'
-import * as actionType from '../actions/userList'
+import * as actionType from 'actions/userList'
 import { createReducer } from '../utils'
 
 export default createReducer({

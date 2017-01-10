@@ -29,4 +29,16 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      actions: path.join(__dirname, "src/actions"),
+      components: path.join(__dirname, "src/components"),
+      constants: path.join(__dirname, "src/constants"),
+      containers: path.join(__dirname, "src/containers"),
+      middleware: path.join(__dirname, "src/middleware"),
+      actions: path.join(__dirname, "src/actions"),
+      reducers: path.join(__dirname, "src/reducers"),
+      static: path.join(__dirname, "src/static")
+    }
+  }
 };
