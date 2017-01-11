@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { global } from '../actions';
-import { moduleData } from '../constants/moduleData';
+import { global } from 'actions';
+import { moduleData } from 'constants/moduleData';
 
 import LinearProgress from 'material-ui/LinearProgress';
-import NavigationMenu from '../components/public/NavigationMenu';
-import AppHeader from '../components/public/AppHeader';
+import NavigationMenu from 'components/public/NavigationMenu';
+import AppHeader from 'components/public/AppHeader';
 import Snackbar from 'material-ui/Snackbar';
 import { pink500 } from 'material-ui/styles/colors';
 

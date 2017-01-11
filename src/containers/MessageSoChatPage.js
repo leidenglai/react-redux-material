@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import _ from 'lodash';
 import update from 'immutability-helper'
 import { connect } from 'react-redux'
-import { global } from '../actions'
+import { global } from 'actions'
 import { dateFormat } from '../utils'
 
 import Paper from 'material-ui/Paper';

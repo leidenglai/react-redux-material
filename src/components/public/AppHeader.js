@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { logOut } from '../../actions/account'
+import { logOut } from 'actions/account'
 
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
