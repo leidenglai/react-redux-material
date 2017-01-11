@@ -8,26 +8,29 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FontIcon from 'material-ui/FontIcon';
 
- class AppHeader extends React.Component {
+class AppHeader extends React.Component {
   static propTypes = {
-    title: React.PropTypes.string.isRequired
+    title: React.PropTypes.string.isRequired,
+    showMenu: React.PropTypes.bool.isRequired,
+    handleMenuToggle: React.PropTypes.func.isRequired
   };
 
   handleAccount = (event, child) => {
-    const {dispatch} = this.props;
-    console.log( this.props)
-    if(child.key === "1") {
+    const { dispatch } = this.props;
+    console.log(this.props)
+    if (child.key === "1") {
       dispatch(logOut());
     }
   }
   render() {
-    const { title} = this.props;
+    const { title } = this.props;
 
     return (
-      <AppBar showMenuIconButton={false}
-				zDepth={0}
-				title={title}
-				style={{position: "fixed", top: 0, left: 0,	zIndex: 1200, paddingLeft: 200}}
+      <AppBar
+        zDepth={0}
+        title={title}
+        style={{position: "fixed", top: 0, left: 0, zIndex: 1200, paddingLeft: this.props.showMenu ? 250 : 0}}
+        iconStyleLeft={{marginLeft: 0}}
         iconElementRight = {
           <IconMenu
             iconButtonElement={
@@ -40,7 +43,8 @@ import FontIcon from 'material-ui/FontIcon';
             <MenuItem key={1} primaryText="Sign out"/>
           </IconMenu>
         }
-			/>
+        onLeftIconButtonTouchTap={this.props.handleMenuToggle}
+      />
     )
   }
 }

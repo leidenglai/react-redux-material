@@ -19,7 +19,7 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowCol
 import ReactPaginate from 'react-paginate';
 
 
-class UserListPage extends React.Component {
+export class UserListPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

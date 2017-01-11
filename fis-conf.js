@@ -1,6 +1,6 @@
-fis.set('project.files', ['index.html', 'static/**', 'webpack-output/**']);
+fis.set('project.files', ['index.html', 'src/static/**', 'webpack-output/**']);
 
-fis.match('static/**.js', {
+fis.match('src/static/**.js', {
   optimizer: fis.plugin('uglify-js')
 });
 

@@ -10,44 +10,11 @@ import Divider from 'material-ui/Divider'
 
 let SelectableList = makeSelectable(List);
 
-function wrapState(ComposedComponent) {
-  return class SelectableList extends Component {
-    static propTypes = {
-      children: PropTypes.node.isRequired,
-      defaultValue: PropTypes.string.isRequired,
-    };
-
-    componentWillMount() {
-      this.setState({
-        selectedIndex: this.props.defaultValue,
-      });
-    }
-
-    handleRequestChange = (event, index) => {
-      this.setState({
-        selectedIndex: index,
-      });
-    };
-
-    render() {
-      return (
-        <ComposedComponent
-          value={this.state.selectedIndex}
-          onChange={this.handleRequestChange}
-        >
-          {this.props.children}
-        </ComposedComponent>
-      );
-    }
-  }
-}
-
-// SelectableList = wrapState(SelectableList);
-
 export default class NavigationMenu extends Component {
   static propTypes = {
     categories: PropTypes.array.isRequired,
     defaultValue: PropTypes.string.isRequired,
+    open: PropTypes.bool.isRequired,
     onItemClick: PropTypes.func.isRequired
   };
 
@@ -56,21 +23,21 @@ export default class NavigationMenu extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.defaultValue === this.props.defaultValue ? false : true;
+    return nextProps.defaultValue === this.props.defaultValue && nextProps.open === this.props.open ? false : true;
   }
 
   render() {
     return (
       <Drawer 
-      	open={true} 
-      	docked={true} 
+      	open={this.props.open} 
+      	docked={true}
       	zDepth={1} 
-      	width={200}
+      	width={250}
       >
 	      <AppBar
 	      	title={'Socialshops'}
 					zDepth={0}
-					style={{height: 50, lineHeight:50}}
+					style={{height: 50, lineHeight:"50px"}}
 	        titleStyle={{lineHeight:"50px"}}
 	        showMenuIconButton = {false}
 				/>

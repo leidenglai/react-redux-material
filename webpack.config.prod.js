@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var cdn = "http://static.socialshops.com/ops";
 
 module.exports = {
   devtool: 'source-map',
@@ -26,24 +25,12 @@ module.exports = {
   ],
   module: {
     loaders: [
-      {
-        test: /.js$/,
-        loader: 'babel',
-        exclude: /node_modules/,
-        include: __dirname
-      },
-      {
-        test: /\.css$/,
-        loaders: ["style", "css"]
-      },
-      {
-        test: /\.less$/,
-        loaders: ["style", "css", "less"]
-      },
-      {
-        test: /\.(png|jpg)$/,
-        loaders: ['file?name=[name]-[hash].[ext]', 'image-webpack?{progressive:true, optimizationLevel: 1, interlaced: false, pngquant:{quality: "65-90", speed: 4}}']
-      }
+      { test: /.js$/, loader: 'babel', exclude: /node_modules/, include: __dirname },
+      { test: /\.css$/, loaders: ["style", "css"] },
+      { test: /\.less$/, loaders: ["style", "css", "less"] },
+      { test: /\.(png|jpg)$/, loaders: ['file?name=[name]-[hash].[ext]', 'image-webpack?{progressive:true, optimizationLevel: 1, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'] },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
     ]
   },
 };

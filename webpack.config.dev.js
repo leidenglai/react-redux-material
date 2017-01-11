@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
         'webpack-hot-middleware/client',
-  './src/index.js'
+        './src/index.js'
     ],
   output: {
     path: path.join(__dirname, 'webpack-output'),
@@ -26,7 +26,9 @@ module.exports = {
       {
         test: /\.(png|jpg)$/,
         loaders: ['file?name=[name]-[hash].[ext]', 'image-webpack?{progressive:true, optimizationLevel: 1, interlaced: false, pngquant:{quality: "65-90", speed: 4}}']
-      }
+      },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
     ]
   },
 };

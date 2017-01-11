@@ -1,19 +1,23 @@
-服务端交互数据结构
-1、发送文本消息
+# IM数据结构设计及redux store设计
+## 服务端交互数据结构
+1. 发送文本消息
 Request Body:
+```
 {
     "targetType" : "users", // users 给用户发消息。chatgroups: 给集合(群组)发
-    "target" : ["uId1", "uId2", "uId3"], // 发送对象，数组对象，即使只有一个用户，
-                                   // 也要用数组 ['u1']，给用户发送时数组元素是用户Id，给集合(群组)发送时 ，数组元素是groupId
+    "target" : ["uId1", "uId2", "uId3"], // 发送对象，数组对象，即使只有一个用户，也要用数组 ['u1']，给用户发送时数组元素是用户Id，给集合(群组)发送时 ，数组元素是groupId
     "content" : {
         "type" : "txt", //消息类型 暂只支持文字类型
         "msg" : "Hello World!" //消息内容
         },
+    "timestamp": new Date(), //消息发送时间
     "fromId" : "fId" //表示消息发送者Id
 }
+```
 
-2、聊天记录
+2. 聊天记录
 Response  Body:
+```
 {
     "type": "chatmessage",
     "from": "test123", //发送人username
@@ -31,10 +35,12 @@ Response  Body:
     "timestamp": 1403099033211, //消息发送时间
     "to": "uu123" //接收人的Id或者接收group的ID
 }
+```
 
 
-redux store数据结构
-用户列表
+## redux store数据结构
+1. 用户列表
+```
 usersListData:[
 	{
 		"userId": "userId",
@@ -57,8 +63,10 @@ usersListData:[
 	},
 	//...
 ]
+```
 
-消息列表
+2. 消息列表
+```
 messagesListData: [
 	{
 		"fromId": "uu-xxxxx", //发送对象id
@@ -85,3 +93,4 @@ messagesListData: [
 		//第二个用户
 	}
 ]
+```

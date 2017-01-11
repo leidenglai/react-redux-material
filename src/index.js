@@ -1,9 +1,9 @@
 import React from 'react'
 
-import ReactDOM from 'react-dom' //dom插件
-
 // https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API
 import 'whatwg-fetch' //fetch api
+
+import ReactDOM from 'react-dom' //dom插件
 
 import { browserHistory } from 'react-router' //路由插件
 
@@ -21,11 +21,11 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-import commonCss from './static/styles/common.less';
 import bootstrapCss from './static/styles/bootstrap.css';
+import commoncss from './static/styles/common.less';
 import normalizeCss from 'normalize.css';
 const muiTheme = getMuiTheme({
-  fontFamily: '"Hiragino Sans GB", "华文细黑", "STHeiti", "微软雅黑", "Microsoft YaHei", SimHei, "Helvetica Neue", Helvetica, Arial, sans-serif',
+  fontFamily: "inherit",
   appBar: {
     height: 50,
   },

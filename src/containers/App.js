@@ -18,6 +18,7 @@ class App extends Component {
       snackbarAutoHideDuration: 2000,
       message: '',
       snackbarOpen: false,
+      showMenu: true
     };
 
   }
@@ -57,6 +58,8 @@ class App extends Component {
     }
   }
 
+  handleMenuToggle = () => this.setState({showMenu: !this.state.showMenu});
+
   render() {
     const { loading, message, systemStatus } = this.props;
 
@@ -64,14 +67,14 @@ class App extends Component {
       opsContainer: {
         position: "relative",
         paddingTop: 50,
-        marginLeft: 200,
+        marginLeft: this.state.showMenu ? 250 : 0,
         minHeight: 400
       },
       linearProgress: {
         display: loading.status ? "block" : "none",
         position: "fixed",
         top: 50,
-        left: 200,
+        left: this.state.showMenu ? 250 : 0,
         zIndex: 1200
       }
     }
@@ -79,10 +82,10 @@ class App extends Component {
     return (
       <div className="row">
         <NavigationMenu
-          categories={moduleData} defaultValue={systemStatus.currentModule} onItemClick={this.handleModuleClick} />
+          categories={moduleData} defaultValue={systemStatus.currentModule} onItemClick={this.handleModuleClick} open={this.state.showMenu}/>
         <div id="opsContainer" style={styles.opsContainer}>
           <LinearProgress mode="indeterminate" color={pink500} style={styles.linearProgress}/>
-          <AppHeader admin={false} title=""/>          
+          <AppHeader admin={false} title="" showMenu={this.state.showMenu} handleMenuToggle={this.handleMenuToggle}/>          
           {this.props.children}
           <Snackbar
             open={ this.state.snackbarOpen}

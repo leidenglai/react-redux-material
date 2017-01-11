@@ -92,7 +92,7 @@ export function responseHandler(dispatch) {
 
 /*
  *格式化时间
- *dateFormat("yyyy-MM-dd hh:mm:ss"); 
+ *dateFormat("yyyy-MM-dd hh:mm"); 
  */
 export function dateFormat(timestamp, fmt = "yyyy-MM-dd hh:mm") {
   let data = new Date(timestamp);
