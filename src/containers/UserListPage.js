@@ -373,6 +373,7 @@ export class UserListPage extends React.Component {
 
         <RaisedButton
           label="Search"
+          id="searchBtn"
           style={styles.searchBtn}
           className="col-xs-2 no-padding"
           icon={<FontIcon style={styles.searchBtnIcon} className="fa fa-search" />}

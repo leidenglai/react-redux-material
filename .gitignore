@@ -4,3 +4,4 @@ node_modules/
 *.pyc
 output/
 webpack-output/
+coverage

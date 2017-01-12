@@ -16,7 +16,15 @@ module.exports = {
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
-    ],
+  ],
+  externals: {
+    'jsdom': 'window',
+    'cheerio': 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/addons': true,
+    'react/lib/ReactContext': 'window',
+    'sinon': 'window.sinon'
+  },
   module: {
     loaders: [
       { test: /.js$/, loader: 'babel', exclude: /node_modules/, include: __dirname },
@@ -29,7 +37,13 @@ module.exports = {
       },
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
-    ]
+    ],
+    // instrument only testing sources with Istanbul
+    postLoaders: [{
+      test: /\.js$/,
+      exclude: /test\/|node_modules|coverage\//,
+      loaders: ['istanbul-instrumenter']
+    }]
   },
   resolve: {
     alias: {
@@ -40,7 +54,8 @@ module.exports = {
       middleware: path.join(__dirname, "src/middleware"),
       actions: path.join(__dirname, "src/actions"),
       reducers: path.join(__dirname, "src/reducers"),
-      static: path.join(__dirname, "src/static")
+      static: path.join(__dirname, "src/static"),
+      utils: path.join(__dirname, 'src/utils')
     }
   }
 };
